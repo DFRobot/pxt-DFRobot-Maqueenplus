@@ -54,9 +54,9 @@ enum Motors1 {
  */
 enum Dir {
     //% block="CW"
-    CW = 0,
+    CW = 1,
     //% block="CCW"
-    CCW = 1
+    CCW = 2
 }
 
 /**

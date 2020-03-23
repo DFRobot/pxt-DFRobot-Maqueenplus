@@ -1,10 +1,10 @@
 {
     "name": "MaqueenPlus",
+    "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*"
     },
-    "description": "",
     "files": [
         "main.blocks",
         "main.ts",
@@ -18,11 +18,11 @@
         "shims.d.ts",
         "_locales/zh/MaqueenPlus-strings.json"
     ],
-    "preferredEditor": "tsprj",
     "testFiles": [
         "test.ts"
     ],
     "supportedTargets": [
         "microbit"
-    ]
+    ],
+    "preferredEditor": "tsprj"
 }
