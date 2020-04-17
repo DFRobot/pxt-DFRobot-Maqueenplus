@@ -259,7 +259,7 @@ namespace DFRobotMaqueenPluss {
      * 电机补偿
      */
     //% block="Motor Compensation|%motor speed|%speed"
-    //% speed.min=0 speed.max=10
+    //% speed.min=0 speed.max=255
     export function mostotCompensation(motor: Motors1, speed: number): void {
         let buf = pins.createBuffer(2)
         if (motor == 1) {

@@ -7,8 +7,6 @@
         "radio": "*"
     },
     "files": [
-        "main.blocks",
-        "main.ts",
         "README.md",
         "maqueenplus.ts",
         "enums.d.ts",
