@@ -198,7 +198,9 @@ namespace DFRobotMaqueenPluss {
     //% speed.min=0 speed.max=255
     export function mototRun(index: Motors, direction: Dir, speed: number): void {
         let _speed:number;
-        _speed=Math.round(speed/1.11);
+        if(speed >= 240) _speed=240;
+        else _speed=speed;
+        //_speed=Math.round(speed/1.11);
         if (index == 1) {
             let buf = pins.createBuffer(3)
             buf[0] = 0x00;
@@ -281,9 +283,9 @@ namespace DFRobotMaqueenPluss {
         pins.i2cWriteNumber(0x10, 0, NumberFormat.Int8LE)
         let speed_x = pins.i2cReadBuffer(0x10, 4)
         if (index == 1) {
-            return Math.round(1.11 * speed_x[1]);
+            return Math.round(speed_x[1]);
         } else if (index == 2) {
-            return Math.round(1.11 * speed_x[3]);
+            return Math.round(speed_x[3]);
         }
         return -1;
     }
