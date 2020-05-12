@@ -126,18 +126,18 @@ enum Color {
     RED = 1,
     //%block="Green"
     GREEN = 2,
-    //%block="Yellow"
-    YELLOW = 3,
     //%block="Blue"
     BLUE = 4,
+    //%block="Yellow"
+    YELLOW = 3,
     //%block="Violet"
     PINK = 5,
     //%block="Cyan"
     CYAN = 6,
     //%block="White"
     WHITH = 7,
-    //%block="Put out"
-    PUT = 8
+    //%block="OFF"
+    OFF = 8
 
 }
 
