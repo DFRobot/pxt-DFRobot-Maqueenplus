@@ -1,68 +1,64 @@
-  
 # Maqueen+
 
-This is a MakeCode graphical programming education robot.
-
-Author: tangjie  
-Date:   2019.October  
-  
-
-## Add extension
-
-open your microbit makecode project, in Extension, paste  
-(https://github.com/DFRobot/pxt-maqueen)
-to search box then search.
-Get the module here  
-(https://www.dfrobot.com.cn/goods-1802.html)
+[Maqueen plus is a STEM educational robot for micro:bit. Optimized with better power management and larger capacity power supply, it can be perfectly compatible with Huskylens AI Vision Sensor.](https://www.dfrobot.com/product-2026.html)
 ## Basic usage
 
-* Set the motion direction and speed of Maqueen motor
+* Control the motor speed and direction; stop motor rotating
 
 ```blocks
-DFRobotMaqueenPluss.MototRun(Motors.M1, Dir.CW, 120)
+DFRobotMaqueenPluss.I2CInit()
+DFRobotMaqueenPluss.mototRun(Motors.ALL, Dir.CW, 255)
+DFRobotMaqueenPluss.mototStop(Motors.M1)
 ```
 
-* Read the Maqueen ultrasound data
+* Read the speed and direction of the left/right motor
 
 ```blocks
-basic.showNumber(Maqueen.Ultrasonic(PingUnit.Centimeters))
+DFRobotMaqueenPluss.I2CInit()
+basic.forever(function () {
+    serial.writeValue("speed", DFRobotMaqueenPluss.readSpeed(Motors1.M1))
+    serial.writeValue("direction", DFRobotMaqueenPluss.readDirection(Motors1.M1))
+})
 ```
 
-* Set the  Maqueen servos 
+* Read the state and greyscale value of the line-tracking sensor
 
 ```blocks
-Maqueen.ServoRun(Maqueen.Servos.S1, 90)
+DFRobotMaqueenPluss.I2CInit()
+basic.forever(function () {
+    serial.writeValue("patorl", DFRobotMaqueenPluss.readPatrol(Patrol.L1))
+    serial.writeValue("voltage", DFRobotMaqueenPluss.readPatrolVoltage(Patrol.L1))
+})
+
 ```
 
-* Set the  Maqueen  motor stop
+* Read IR value and the distance the ultrasound returns 
 
 ```blocks
-Maqueen.MotorStop(Maqueen.Motors.M1)
+DFRobotMaqueenPluss.I2CInit()
+basic.forever(function () {
+    serial.writeValue("IR", DFRobotMaqueenPluss.IR_read())
+    serial.writeValue("ultrasonic", DFRobotMaqueenPluss.ultraSonic(PIN.P0, PIN.P0))
+})
+
 ```
 
-* Read patrol sensor data
+* Servo control module for controlling 3-way servo 
 
 ```blocks
-basic.showNumber(Maqueen.ReadPatrol(Maqueen.Patrol.PatrolLeft))
+DFRobotMaqueenPluss.I2CInit()
+DFRobotMaqueenPluss.servoRun(Servos.S1, 100)
+
 ```
 
-* Set LED light switch
+* RGB LED control module: let Maqueen Plus's RGB LEDs display various colors
 
 ```blocks
-Maqueen.WriteLED(Maqueen.LED.LEDLeft, Maqueen.LEDswitch.turnOn)
+DFRobotMaqueenPluss.I2CInit()
+DFRobotMaqueenPluss.setRGBLight(RGBLight.RGBL, Color.RED)
+
 ```
 
-* Read IR sensor data
-
-```blocks
-basic.showNumber(Maqueen.IR_read())
-```
-
-* Read the version number
-
-```blocks
-basic.showString(Maqueen.IR_read_version())
-```
 
 ## License
 

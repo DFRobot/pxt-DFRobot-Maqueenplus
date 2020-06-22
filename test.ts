@@ -1,1 +1,22 @@
-// tests go here; this will not be compiled when this package is used as a library
+
+DFRobotMaqueenPluss.I2CInit()
+DFRobotMaqueenPluss.mototRun(Motors.ALL, Dir.CW, 100)
+basic.pause(1000)
+DFRobotMaqueenPluss.mototStop(Motors.ALL)
+basic.pause(1000)
+DFRobotMaqueenPluss.setRGBLight(RGBLight.RGBL, Color.RED)
+basic.pause(1000)
+DFRobotMaqueenPluss.setRGBLight(RGBLight.RGBL, Color.YELLOW)
+basic.pause(1000)
+DFRobotMaqueenPluss.setRGBLight(RGBLight.RGBL, Color.OFF)
+basic.pause(1000)
+DFRobotMaqueenPluss.servoRun(Servos.S1, 90)
+basic.pause(1000)
+basic.forever(function () {
+    serial.writeValue("Speed", DFRobotMaqueenPluss.readSpeed(Motors1.M1))
+    serial.writeValue("direction", DFRobotMaqueenPluss.readDirection(Motors1.M1))
+    serial.writeValue("IR", DFRobotMaqueenPluss.IR_read())
+    serial.writeValue("patrol", DFRobotMaqueenPluss.readPatrol(Patrol.L1))
+    serial.writeValue("ultrasonic", DFRobotMaqueenPluss.ultraSonic(PIN.P0, PIN.P0))
+    serial.writeValue("voltage", DFRobotMaqueenPluss.readPatrolVoltage(Patrol.L1))
+})
