@@ -52,7 +52,7 @@ enum class RemoteButton {
 };
 
 
-namespace maqueenIR { 
+namespace IR { 
   map<RemoteButton, vA> actions;
   map<RemoteButton, uint32_t> lastact;
   Timer tsb; 

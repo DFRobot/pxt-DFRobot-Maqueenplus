@@ -46,9 +46,9 @@ enum Motors1 {
 }
 
 enum Dir {
-    //% block="CW"
+    //% block="rotate forward"
     CW = 1,
-    //% block="CCW"
+    //% block="backward"
     CCW = 2
 }
 
@@ -271,7 +271,7 @@ namespace DFRobotMaqueenPluss {
         return -1;
     }
     /**
-     * Read motor direction
+     * Read motor direction(stop:0,forward:1,back:2)
      */
     //% weight=61
     //%block="read motor|%index direction(stop:0,forward:1,back:2)"
@@ -411,7 +411,7 @@ namespace DFRobotMaqueenPluss {
      * Read the distance value the ultrasound returns 
      */
     //% weight=20
-    //%block="read ultrasonic sensor T|%T E|%E cm"
+    //%block="read ultrasonic sensor TRIG|%T ECHO|%E cm"
     export function ultraSonic(T: PIN, E: PIN): number {
         let maxCmDistance = 500;
         let _T;

@@ -21,7 +21,7 @@
     "DFRobotMaqueenPluss.readPatrol|block": "读巡线传感器|%patrol",
     "DFRobotMaqueenPluss.readPatrolVoltage|block": "读巡线传感器|%patrol灰度值",
     "DFRobotMaqueenPluss.readVersion|block": "获取版本号",
-    "DFRobotMaqueenPluss.ultraSonic|block": "读超声波传感器T|%T E|%E cm",
+    "DFRobotMaqueenPluss.ultraSonic|block": "读超声波传感器 TRIG|%T TRIG|%E cm",
     "DFRobotMaqueenPluss.IR_read|block": "读红外",
     "DFRobotMaqueenPluss.IR_callbackUser|block": "当红外接收到",
     "DFRobotMaqueenPluss.mototStop|block": "电机|%index停止",
