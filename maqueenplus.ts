@@ -239,21 +239,22 @@ namespace DFRobotMaqueenPlus {
     /**
      * Compensate speed difference between two motors
      */
-    //% weight=7
-    //% block="motor compensation|%motor speed|%speed"
-    //% speed.min=0 speed.max=255
-    export function mostotCompensation(motor: Motors1, speed: number): void {
-        let buf = pins.createBuffer(2)
-        if (motor == 1) {
-            buf[0] = 0x08;
-            buf[1] = speed;
-            pins.i2cWriteBuffer(0x10, buf)
-        } else if (motor == 2) {
-            buf[0] = 0x09;
-            buf[1] = speed;
-            pins.i2cWriteBuffer(0x10, buf)
-        }
-    }
+    // //% weight=7
+    // //% block="motor compensation|%motor speed|%speed"
+    // //% speed.min=0 speed.max=255
+    // export function mostotCompensation(motor: Motors1, speed: number): void {
+    //     let buf = pins.createBuffer(2)
+    //     if (motor == 1) {
+    //         buf[0] = 0x08;
+    //         buf[1] = speed;
+    //         pins.i2cWriteBuffer(0x10, buf)
+    //     } else if (motor == 2) {
+    //         buf[0] = 0x09;
+    //         buf[1] = speed;
+    //         pins.i2cWriteBuffer(0x10, buf)
+    //     }
+    // }
+    
     /**
      * Read motor speed
      */
@@ -411,7 +412,7 @@ namespace DFRobotMaqueenPlus {
      * Read the distance value the ultrasound returns 
      */
     //% weight=20
-    //%block="read ultrasonic sensor TRIG|%T ECHO|%E cm"
+    //%block="read ultrasonic sensor TRIG %T ECHO %E Company:CM"
     export function ultraSonic(T: PIN, E: PIN): number {
         let maxCmDistance = 500;
         let _T;
