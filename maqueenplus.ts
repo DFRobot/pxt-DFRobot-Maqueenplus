@@ -11,11 +11,12 @@
  * @date  2019-11-19
  */
 
+let maqueencb: Action
+let maqueenmycb: Action
 let maqueene = "1"
 let maqueenparam = 0
 let alreadyInit = 0
 let IrPressEvent = 0
-let maqueencb: Action
 
 enum PIN {
     P0 = 3,

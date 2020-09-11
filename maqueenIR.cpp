@@ -5,6 +5,8 @@
 using namespace pxt;
 typedef vector<Action> vA;
 
+
+
 enum class Pins{
   P0=  3,
   P1=  2,
@@ -51,8 +53,9 @@ enum class RemoteButton {
   Nine = 0x1a
 };
 
-
-namespace IR { 
+//% color=50 weight=80
+//% icon="\uf1eb"
+namespace maqueenIR { 
   map<RemoteButton, vA> actions;
   map<RemoteButton, uint32_t> lastact;
   Timer tsb; 
@@ -66,10 +69,8 @@ namespace IR {
   /**
   * button pushed.
   */
-
-  
-  //%block="on |%btn| button pressed"
-  
+  //% blockId=ir_received_left_event
+  //% block="on |%btn| button pressed"
   void onPressEvent(RemoteButton btn, Action body) {
     //if(actions.find(btn) == actions.end()) actions[btn] = new vector();
     IRcallbackNum=(int)btn;
@@ -160,7 +161,7 @@ namespace IR {
     if(now - lastact[(RemoteButton)buf[2]] < 100) return;
     lastact[(RemoteButton)buf[2]] = now;
     msg=(int)buf[2];
-    //uBit.serial.send(IRcallbackNum);
+    uBit.serial.send(IRcallbackNum);
     if(IRcallbackNum < 1){
       return;
     }
@@ -181,8 +182,8 @@ namespace IR {
   /**
   * initialises local variablesssss
   */
-  
-  //%block="connect ir receiver to %pin"
+  //% blockId=ir_init
+  //% block="connect ir receiver to %pin"
   void initIR(Pins pin){
     rx = new ReceiverIR((PinName)pin);
     tsb.start(); //interrupt timer for debounce

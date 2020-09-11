@@ -47,5 +47,7 @@
     Eight = 0x19,
     Nine = 0x1a,
     }
+declare namespace maqueenIR {
+}
 
 // Auto-generated. Do not edit. Really.
