@@ -273,7 +273,7 @@ namespace DFRobotMaqueenPlus {
             }
         } else if (index == 2) {
             if((Math.round(speed_x[3])<20) && (Math.round(speed_x[3]) != 0)){
-                ret = Math.round(speed_x[1]) + 255;
+                ret = Math.round(speed_x[3]) + 255;
             }else{
                 ret = Math.round(speed_x[3]);
             }
