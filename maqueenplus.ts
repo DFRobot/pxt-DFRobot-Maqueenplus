@@ -262,15 +262,23 @@ namespace DFRobotMaqueenPlus {
     //% weight=65
     //%block="read motor|%index speed"
     export function readSpeed(index: Motors1): number {
-        let _speed:number;
+        let _speed:number,ret = -1;
         pins.i2cWriteNumber(0x10, 0, NumberFormat.Int8LE)
         let speed_x = pins.i2cReadBuffer(0x10, 4)
         if (index == 1) {
-            return Math.round(speed_x[1]);
+            if((Math.round(speed_x[1])<20) && (Math.round(speed_x[1]) != 0)){
+               ret = Math.round(speed_x[1]) + 255;
+            }else{
+                ret = Math.round(speed_x[1]);
+            }
         } else if (index == 2) {
-            return Math.round(speed_x[3]);
+            if((Math.round(speed_x[3])<20) && (Math.round(speed_x[3]) != 0)){
+                ret = Math.round(speed_x[1]) + 255;
+            }else{
+                ret = Math.round(speed_x[3]);
+            }
         }
-        return -1;
+        return ret;
     }
     /**
      * Read motor direction(stop:0,forward:1,back:2)
