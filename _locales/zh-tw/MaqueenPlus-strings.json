@@ -34,5 +34,7 @@
     "Color.WHITH|block": "白",
     "Color.OFF|block": "關閉",
     "DFRobotMaqueenPlus.clearDistance|block": "清除車輪圈數 %motor",
-    "DFRobotMaqueenPlus.readeDistance|block": "獲取車輪圈數 %motor"
+    "DFRobotMaqueenPlus.readeDistance|block": "獲取車輪圈數 %motor",
+    "DFRobotMaqueenPlus.IR_readV2|block": "讀取紅外線數值",
+    "DFRobotMaqueenPlus.IR_callbackUserV2|block": "當接收到紅外線"
 }
