@@ -454,6 +454,8 @@ namespace DFRobotMaqueenPlus {
         }
 
         let ultraSonic_d;
+        pins.digitalWritePin(_T, 1);
+        basic.pause(1)
         pins.digitalWritePin(_T, 0);
         if (pins.digitalReadPin(_E) == 0) {
             pins.digitalWritePin(_T, 1);
