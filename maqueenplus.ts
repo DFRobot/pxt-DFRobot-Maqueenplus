@@ -424,6 +424,30 @@ namespace DFRobotMaqueenPlus {
     //% weight=20
     //%block="read ultrasonic sensor TRIG %T ECHO %E Company:CM"
     export function ultraSonic(T: PIN, E: PIN): number {
+        let data:number[]=[];
+        let readDataLen = 9;
+        for(let i = 0; i < readDataLen; i++){
+            data[i] = readUlt(T, E);
+        }
+        for(let i = 0; i < readDataLen-1; i++){
+            for(let j = i+1; j < readDataLen; j++){
+                if(data[i]>data[j]){
+                    let temp = data[i];
+                    data[i] = data[j];
+                    data[j] = temp;
+                }
+            }
+        }
+        let sum = 0;
+        for(let i = 1; i < readDataLen-1; i++){
+            sum += data[i];
+        }
+        
+        return Math.round(sum/(readDataLen-2));
+        
+    }
+
+    function readUlt(T:number, E:number):number{
         let maxCmDistance = 500;
         let _T;
         let _E;
@@ -454,27 +478,27 @@ namespace DFRobotMaqueenPlus {
         }
 
         let ultraSonic_d;
-        pins.digitalWritePin(_T, 1);
-        basic.pause(1)
+        // pins.digitalWritePin(_T, 1);
+        // basic.pause(1)
         pins.digitalWritePin(_T, 0);
         if (pins.digitalReadPin(_E) == 0) {
+            pins.digitalWritePin(_T, 0);
             pins.digitalWritePin(_T, 1);
-            // basic.pause(10);
+            basic.pause(20);
             pins.digitalWritePin(_T, 0);
             ultraSonic_d = pins.pulseIn(_E, PulseValue.High, maxCmDistance * 58);
         } else {
-            pins.digitalWritePin(_T, 0);
-            // basic.pause(10);
             pins.digitalWritePin(_T, 1);
+            pins.digitalWritePin(_T, 0);
+            basic.pause(20);
+            pins.digitalWritePin(_T, 0);
             ultraSonic_d = pins.pulseIn(_E, PulseValue.Low, maxCmDistance * 58);
         }
-        let ultraSonic_x = ultraSonic_d / 39;
-        if (ultraSonic_x <= 0 || ultraSonic_x > 500) {
-            return 0;
-        }
+        let ultraSonic_x = ultraSonic_d / 59;
+        // if (ultraSonic_x <= 0 || ultraSonic_x > 300) {
+        //     return 0;
+        // }
         return Math.round(ultraSonic_x);
-
-
     }
     /**
      *  infra-red sensor
