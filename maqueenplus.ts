@@ -421,30 +421,34 @@ namespace DFRobotMaqueenPlus {
     /**
      * Read the distance value the ultrasound returns 
      */
+    let state1 = 0;
     //% weight=20
     //%block="read ultrasonic sensor TRIG %T ECHO %E Company:CM"
     export function ultraSonic(T: PIN, E: PIN): number {
-        let data:number[]=[];
-        let readDataLen = 9;
-        for(let i = 0; i < readDataLen; i++){
-            data[i] = readUlt(T, E);
+        
+        let data;
+        let i = 0;
+        data = readUlt(T, E);
+        if(state1  == 1 && data != 0){
+            state1 =0;
         }
-        for(let i = 0; i < readDataLen-1; i++){
-            for(let j = i+1; j < readDataLen; j++){
-                if(data[i]>data[j]){
-                    let temp = data[i];
-                    data[i] = data[j];
-                    data[j] = temp;
-                }
+        if(data != 0){
+        }else{
+            if(state1 == 0){
+                do{
+                    data = readUlt(T, E);
+                    i++;
+                    if(i > 3){
+                        state1 =1;
+                        data =500;
+                        break;
+                        }
+                }while(data == 0)
             }
         }
-        let sum = 0;
-        for(let i = 1; i < readDataLen-1; i++){
-            sum += data[i];
-        }
-        
-        return Math.round(sum/(readDataLen-2));
-        
+        if(data == 0)
+            data = 500
+        return data;
     }
 
     function readUlt(T:number, E:number):number{
