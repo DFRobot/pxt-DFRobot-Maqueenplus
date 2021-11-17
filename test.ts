@@ -15,7 +15,6 @@ basic.pause(1000)
 basic.forever(function () {
     serial.writeValue("Speed", DFRobotMaqueenPlus.readSpeed(Motors1.M1))
     serial.writeValue("direction", DFRobotMaqueenPlus.readDirection(Motors1.M1))
-    serial.writeValue("IR", DFRobotMaqueenPlus.IR_read())
     serial.writeValue("patrol", DFRobotMaqueenPlus.readPatrol(Patrol.L1))
     serial.writeValue("ultrasonic", DFRobotMaqueenPlus.ultraSonic(PIN.P0, PIN.P0))
     serial.writeValue("voltage", DFRobotMaqueenPlus.readPatrolVoltage(Patrol.L1))

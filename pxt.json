@@ -3,18 +3,12 @@
     "version": "1.4.5",
     "description": "",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "ir": "github:tangjie133/pxt-DFRobot_IR#v0.0.7"
     },
     "files": [
         "README.md",
         "maqueenplus.ts",
-        "enums.d.ts",
-        "maqueenIR.cpp",
-        "ReceiverIR.cpp",
-        "NecIR.cpp",
-        "ReceiverIR.h",
-        "RemoteIR.h",
-        "shims.d.ts",
         "_locales/zh-cn/MaqueenPlus-strings.json",
         "_locales/zh-tw/MaqueenPlus-strings.json"
     ],
@@ -22,7 +16,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "4.0.9",
+        "target": "4.0.16",
         "targetId": "microbit"
     },
     "supportedTargets": [

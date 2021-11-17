@@ -11,13 +11,6 @@
  * @date  2019-11-19
  */
 
-let maqueencb: Action
-let maqueenmycb: Action
-let maqueene = "1"
-let maqueenparam = 0
-let alreadyInit = 0
-let IrPressEvent = 0
-
 enum PIN {
     P0 = 3,
     P1 = 2,
@@ -504,61 +497,7 @@ namespace DFRobotMaqueenPlus {
         // }
         return Math.round(ultraSonic_x);
     }
-    /**
-     *  infra-red sensor
-     */
-    //% advanced=true shim=maqueenIR::initIR
-    function initIR(pin: Pins): void {
-        return
-    }
-    //% advanced=true shim=maqueenIR::onPressEvent
-    function onPressEvent(btn: RemoteButton, body: Action): void {
-        return
-    }
-    //% advanced=true shim=maqueenIR::getParam
-    function getParam(): number {
-        return 0
-    }
-
-    function maqueenInit(): void {
-        if (alreadyInit == 1) {
-            return
-        }
-        initIR(Pins.P16);
-        alreadyInit = 1;
-    }
-
-    /**
-     * Run when received IR signal
-     */
-    //% weight=10
-    //%  block="on IR received"
-    export function IR_callbackUser(maqueencb: (message: number) => void) {
-        maqueenInit();
-        IR_callback(() => {
-            const packet = new Packeta();
-            packet.mye = maqueene;
-            maqueenparam = getParam();
-            packet.myparam = maqueenparam;
-            maqueencb(packet.myparam);
-        });
-    }
-
-    /**
-     * Read the IR information 
-     */
-    //% weight=15
-    //%  block="read IR"
-    export function IR_read(): number {
-        maqueenInit();
-        return getParam();
-    }
-
-    function IR_callback(a: Action): void {
-        maqueencb = a;
-        IrPressEvent += 1;
-        onPressEvent(IrPressEvent, maqueencb);
-    }
+    
     /**
      * get the revolutions of wheel
      */
@@ -606,45 +545,4 @@ namespace DFRobotMaqueenPlus {
                 pins.i2cWriteBuffer(0x10, buf3);
         }
     }
-    /**
-     * Read IR sensor value V2.
-     */
-
-    //% advanced=true shim=maqueenIRV2::irCode
-    function irCode(): number {
-        return 0;
-    }
-    
-    //% weight=5
-    //% group="micro:bit(v2)"
-    //% block="read IR key value"
-    export function IR_readV2(): number {
-        return valuotokeyConversion();
-    }
-
-    //% weight=2
-    //% group="micro:bit(v2)"
-    //% block="on IR received"
-    //% draggableParameters
-    export function IR_callbackUserV2(cb: (message: number) => void) {
-        state = 1;
-        control.onEvent(11, 22, function() {
-            cb(irstate)
-        }) 
-    }
-
-function valuotokeyConversion():number{
-    return (irCode() & 0xff);
-}
-
-    basic.forever(() => {
-        if(state == 1){
-             irstate = valuotokeyConversion();
-        if(irstate != -1){
-            control.raiseEvent(11, 22)
-        }
-        }
-       
-        basic.pause(50);
-    })
 }
