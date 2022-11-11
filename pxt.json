@@ -4,7 +4,7 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "ir": "github:tangjie133/pxt-DFRobot_IR#v0.0.7"
+        "ir": "github:tangjie133/pxt-DFRobot_IR#v0.2.0"
     },
     "files": [
         "README.md",
@@ -16,7 +16,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "4.0.16",
+        "target": "5.0.12",
         "targetId": "microbit"
     },
     "supportedTargets": [
